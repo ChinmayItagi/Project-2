@@ -1,0 +1,8 @@
+a = load '/home/chinmay/Desktop/consumersorted.txt' Using PigStorage(',') as (data:chararray,prod:chararray,subprod:chararray,issue:chararray,subissue:chararray,
+narr:chararray,compubres:chararray,com:chararray,state:chararray,zip:chararray,
+subm:chararray,datesend:chararray,comres:chararray,timely:chararray,cundis:chararray,id:int);
+b = FILTER a by timely=='Yes';
+c = group b all;
+d = FOREACH c GENERATE 'Number of complaints with timely response',COUNT(b.id);
+dump d;
+

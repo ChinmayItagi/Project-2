@@ -1,0 +1,9 @@
+a = load '/home/chinmay/Desktop/consumersorted.txt' Using PigStorage(',') as (date:chararray,prod:chararray,subprod:chararray,issue:chararray,subissue:chararray,
+narr:chararray,compubres:chararray,com:chararray,state:chararray,zip:chararray,
+subm:chararray,datesend:chararray,comres:chararray,timely:chararray,cundis:chararray,id:int);
+b = GROUP a by com; 
+c = FOREACH b GENERATE group,COUNT(a.id) as number;
+d = order c by number DESC;
+e = LIMIT d 10;
+dump e;
+
